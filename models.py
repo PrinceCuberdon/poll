@@ -23,7 +23,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
-from ucomment.models import Comment
+from libs.ucomment.models import Comment
 
 class PollManager(models.Manager):
     def get_current(self):

@@ -18,7 +18,7 @@ from django.contrib import admin
 from django import forms
 from django.forms.models import BaseInlineFormSet
 
-from poll.models import *
+from libs.poll.models import *
 
 class PollAdminForm(forms.ModelForm):
     class Meta:
