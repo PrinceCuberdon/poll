@@ -16,14 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import datetime
-import json
 
 from django.db import models
-from django.db.models import Q
-from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
-from libs.ucomment.models import Comment
 
 class PollManager(models.Manager):
     def get_current(self):
