@@ -3,11 +3,9 @@
 # Band Cochon (c) Prince Cuberdon 2011 and Later <princecuberdon@bandcochon.fr>
 #
 
-import json
-
 from django.conf import settings
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, JsonResponse
+from django.http import  HttpResponseBadRequest, HttpResponseRedirect, JsonResponse
 
 from poll.models import *
 from notification import ajax_log
