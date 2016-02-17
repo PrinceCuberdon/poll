@@ -38,6 +38,9 @@ class Poll(models.Model):
 
     objects = PollManager()
 
+    class Meta:
+        app_label = "poll"
+
     def __unicode__(self):
         return self.question
 
@@ -81,6 +84,9 @@ class Question(models.Model):
     pool = models.ForeignKey('Poll', related_name="poll")  # Sorry for the typing error
     label = models.CharField(max_length=100)
     vote = models.IntegerField(default=0)
+
+    class Meta:
+        app_label = "poll"
 
     def __unicode__(self):
         return self.label
