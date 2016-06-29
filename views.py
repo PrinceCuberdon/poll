@@ -3,14 +3,17 @@
 # Band Cochon (c) Prince Cuberdon 2011 and Later <princecuberdon@bandcochon.fr>
 #
 
+import logging
+
 from django.conf import settings
 from django.template import RequestContext
-from django.http import  HttpResponseBadRequest, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseBadRequest, HttpResponseRedirect, JsonResponse
 
 from poll.models import *
-from notification import ajax_log
 from django.shortcuts import render_to_response
 from ucomment.models import Comment
+
+L = logging.getLogger("poll")
 
 
 def vote(request):
@@ -29,7 +32,7 @@ def vote(request):
 
             return JsonResponse({'results': poll.get_results()})
     except Exception as e:
-        ajax_log("Poll.vote : %s" % e)
+        L.error(u"poll.views.vote : %s" % e)
 
     return HttpResponseBadRequest('OOops - something wrong appends.')
 
@@ -39,8 +42,9 @@ def results(request):
     try:
         # A poll exists. get the last one 
         return HttpResponseRedirect(reverse('poll_result', args=(Poll.objects.get_latest().pk,)))
-    except:
+    except Exception as e:
         # No poll. Display the page anyway
+        L.error(u"poll.views.results: Unable to display results. Reasons : %s" % e)
         return render_to_response(settings.BANDCOCHON_TEMPLATES.Poll.results, RequestContext(request, {
             'olds': None,
             'poll': None,
