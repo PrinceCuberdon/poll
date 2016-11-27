@@ -32,7 +32,7 @@ def vote(request):
 
             return JsonResponse({'results': poll.get_results()})
     except Exception as e:
-        L.error(u"poll.views.vote : %s" % e)
+        L.error(u"poll.views.vote : {error}".format(error=e))
 
     return HttpResponseBadRequest('OOops - something wrong appends.')
 
@@ -44,7 +44,7 @@ def results(request):
         return HttpResponseRedirect(reverse('poll_result', args=(Poll.objects.get_latest().pk,)))
     except Exception as e:
         # No poll. Display the page anyway
-        L.error(u"poll.views.results: Unable to display results. Reasons : %s" % e)
+        L.error(u"poll.views.results: Unable to display results. Reasons : {error}".format(error=e))
         return render_to_response(settings.BANDCOCHON_TEMPLATES.Poll.results, RequestContext(request, {
             'olds': None,
             'poll': None,
