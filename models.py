@@ -33,8 +33,8 @@ class PollManager(models.Manager):
 
 class Poll(models.Model):
     question = models.CharField(max_length=150)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
 
     objects = PollManager()
 
